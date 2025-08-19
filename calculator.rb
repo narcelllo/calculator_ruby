@@ -9,34 +9,38 @@ def options()
   puts "Q - Quit"
 end
 
-def valid_user_input()
+def get_user_input()
   command = gets.chomp.downcase
+  return command
+end
 
+def invalid_command(command)
+  if command != "1" && command != "2" && command != "3" && command != "4" && command != "q"
+    puts "Invalid command"
+    return true
+  end
+end
+
+def check_end(command)
   if command == "q"
     puts "End"
-    return
+    return true
   end
-
-  if command == "1"
-    puts "1 - Addition"
-  elsif command == "2"
-    puts "2 - Subtraction"
-  elsif command == "3"
-    puts "3 - Multiplication"
-  elsif command == "4"
-    puts "4 - Division"
-  else
-    puts "Invalid command"
-    return
-  end
-  return command
 end
 
 def calculator_loop()
   while true
     options()
 
-    command = valid_user_input()
+    command = get_user_input()
+
+    if invalid_command(command)
+      next
+    end
+
+    if check_end(command)
+      break
+    end
 
     puts "whats is the first number?"
     first_number = gets.chomp.to_d
