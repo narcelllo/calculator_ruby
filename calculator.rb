@@ -1,14 +1,15 @@
 require 'bigdecimal'
 require 'bigdecimal/util'
 
-def main()
+def options()
   puts "1 - Addition"
   puts "2 - Subtraction"
   puts "3 - Multiplication"
   puts "4 - Division"
   puts "Q - Quit"
+end
 
-  
+def valid_user_input()
   command = gets.chomp.downcase
 
   if command == "q"
@@ -28,26 +29,39 @@ def main()
     puts "Invalid command"
     return
   end
+  return command
+end
 
-  puts "whats is the first number?"
-  first_number = gets.chomp.to_d
+def calculator_loop()
+  while true
+    options()
 
-  puts "whats is the second number?"
-  second_number = gets.chomp.to_d
+    command = valid_user_input()
 
-  if command == "1"
-    result = first_number + second_number
-    print (result.to_i)
-  elsif command == "2"
-    result = first_number - second_number
-    print (result.to_i)
-  elsif command == "3"
-    result = first_number * second_number
-    print (result.to_i)
-  elsif command == "4"
-    result = first_number / second_number
-    print (result.to_s('F'))
+    puts "whats is the first number?"
+    first_number = gets.chomp.to_d
+
+    puts "whats is the second number?"
+    second_number = gets.chomp.to_d
+
+    if command == "1"
+      result = first_number + second_number
+      print (result.to_i)
+    elsif command == "2"
+      result = first_number - second_number
+      print (result.to_i)
+    elsif command == "3"
+      result = first_number * second_number
+      print (result.to_i)
+    elsif command == "4"
+      result = first_number / second_number
+      print (result.to_s('F'))
+    end
   end
+end
+
+def main()
+  calculator_loop()
 end
 
 main()
